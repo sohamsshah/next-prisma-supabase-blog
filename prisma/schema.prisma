@@ -15,6 +15,8 @@ model Post {
   published Boolean @default(false)
   author    User?   @relation(fields: [authorId], references: [id])
   authorId  Int?
+  Test      Test?   @relation(fields: [testId], references: [id])
+  testId    Int?
 }
 
 model User {
@@ -26,4 +28,14 @@ model User {
   posts     Post[]
 
   @@map(name: "users")
+}
+
+// create model here and push on the DB
+model Test {
+  id    Int     @id @default(autoincrement())
+  name  String?
+  email String? @unique
+  Post  Post[]
+
+  @@map(name: "test")
 }
