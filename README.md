@@ -1,3 +1,27 @@
-# Fullstack Authentication Example with Next.js and NextAuth.js
+# Next.js + Prisma + Supabase Blog Project
 
-This is the starter project for the fullstack tutorial with Next.js and Prisma. You can find the final version of this project in the [`final`](https://github.com/prisma/blogr-nextjs-prisma/tree/final) branch of this repo.
+## About the Project
+
+- Prisma connects the PostgreSQL Database provided by Supabase by using postgres connection string.
+- Write the Database Schemas in `prisma/schema.prisma`
+- `lib/prisma.ts` contains prisma client config
+- Use prisma client APIs on `getStaticProps` and `getServerSideProps` in the Next.js project. Also you can use them in `pages/api/` as well to perform Database Operations.
+- Prisma Client APIs cannot be used in the Frontend application.
+- This App performs basic CRUD Operations with Prisma + Supabase DB + Next FE and Server
+
+## Get Started
+
+- Create a `.env` as below
+
+```
+DATABASE_URL=<YOUR_SUPABASE-CONNECION-STRING-HERE>
+```
+
+- npm install
+- npm run dev
+
+Also, you can visualize the database on local with:
+
+```
+npx prisma studio
+```
