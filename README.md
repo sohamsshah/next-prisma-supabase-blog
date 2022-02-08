@@ -25,3 +25,5 @@ Also, you can visualize the database on local with:
 ```
 npx prisma studio
 ```
+
+If you are using `prisma migrate dev`, please refer [this](https://stackoverflow.com/questions/67551593/supabase-client-permission-denied-for-schema-public) without fail. 
