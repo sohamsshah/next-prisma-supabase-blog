@@ -1,41 +1,38 @@
-// schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-generator client {
-  provider = "prisma-client-js"
-}
-
 model Post {
-  id        Int     @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   title     String
   content   String?
-  published Boolean @default(false)
-  author    User?   @relation(fields: [authorId], references: [id])
+  published Boolean  @default(false)
   authorId  Int?
-  Test      Test?   @relation(fields: [testId], references: [id])
   testId    Int?
+  special   Boolean? @default(false)
+  users     users?   @relation(fields: [authorId], references: [id])
+  test      test?    @relation(fields: [testId], references: [id])
 }
 
-model User {
-  id        Int      @id @default(autoincrement())
-  name      String?
-  email     String?  @unique
-  createdAt DateTime @default(now()) @map(name: "created_at")
-  updatedAt DateTime @updatedAt @map(name: "updated_at")
-  posts     Post[]
-
-  @@map(name: "users")
-}
-
-// create model here and push on the DB
-model Test {
+model test {
   id    Int     @id @default(autoincrement())
   name  String?
   email String? @unique
+  phone BigInt?
   Post  Post[]
+}
 
-  @@map(name: "test")
+model users {
+  id         Int      @id @default(autoincrement())
+  name       String?
+  email      String?  @unique
+  created_at DateTime @default(now())
+  updated_at DateTime
+  phone      Int?
+  Post       Post[]
 }
